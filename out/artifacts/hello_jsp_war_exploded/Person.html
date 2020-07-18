@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+
+    <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        const readDataFromServer = () => {
+            $.get("/hello.dgsw", null, (response) => {
+                console.log(response);
+                showData(response);
+            });
+        };
+
+        const showData = (response) => {
+            const { name, job, age } = response;
+            $("#span_name").html(name);
+            $("#span_job").html(job);
+            $("#span_age").html(age);
+        }
+
+        $(document).ready(() => {
+            readDataFromServer();
+        });
+    </script>
+
+    <style>
+        label {
+            display: inline-block;
+            width: 80px;
+        }
+
+        div {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Person</h1>
+
+    <div>
+        <label>이름</label>
+        <span id ="span_name"></span>
+    </div>
+
+    <div>
+        <label>직업</label>
+        <span id ="span_job"></span>
+    </div>
+
+    <div>
+        <label>나이</label>
+        <span id ="span_age"></span>
+    </div>
+</body>
+</html>
